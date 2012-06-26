@@ -1,0 +1,22 @@
+h1. WebDAV Deployer
+
+A simple helper project to make deploying artifacts using maven WebDAV wagon easier.
+
+h2. How to Deploy third-party artifacts to WebDAV Maven repository
+
+For example: How to deploy the artifacts (from Eclipse @plugins@ folder) into Soluvas.org thirdparty repository:
+
+bc.. mvn deploy:deploy-file -f ~/git/webdav-deployer/pom.xml \
+  -Durl=dav:http://maven.soluvas.org/thirdparty \
+  -Dfile=$HOME/eclipse_jee/plugins/org.eclipse.emf.common_2.7.0.v20120127-1122.jar \
+  -DgroupId=org.eclipse.emf -DartifactId=org.eclipse.emf.common -Dversion=2.7.0.v20120127-1122 \
+  -DrepositoryId=soluvas.org.thirdparty -Dpackaging=jar -DgeneratePom=true
+
+mvn deploy:deploy-file -f ~/git/webdav-deployer/pom.xml \
+  -Durl=dav:http://maven.soluvas.org/thirdparty \
+  -Dfile=$HOME/eclipse_jee/plugins/org.eclipse.emf.common.source_2.7.0.v20120127-1122.jar \
+  -DgroupId=org.eclipse.emf -DartifactId=org.eclipse.emf.common \
+  -Dversion=2.7.0.v20120127-1122 -Dclassifier=sources \
+  -DrepositoryId=soluvas.org.thirdparty -Dpackaging=jar -DgeneratePom=true
+
+p. If you're running from @webdav-deployer@ folder, you can skip the @-f ~git/webdav-deployer/pom.xml@ part.
